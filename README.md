@@ -1,3 +1,3 @@
 # memory
 
-detta ska bli ett memoryspelför vbg
+detta ska bli ett memoryspel för vbg
