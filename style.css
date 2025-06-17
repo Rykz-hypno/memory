@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(/img/gräsplätt.png);
+    text-align: center;
+}
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 130px);
+    grid-gap: 10px;
+    justify-content: center;
+    margin: 30px auto;
+    width: max-content;
+}
+.card, .card.flipped, .card.matched {
+    width: 130px;
+    height: 180px;
+    background-image: url(/img/framsida.png);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: default;
+    transform: perspective(600px) rotateY(180deg);
+}
+.card {
+    background-image: url(/img/baksida.png);
+    cursor: pointer;
+    border-radius: 8px;
+    transform: perspective(600px) rotateY(0deg);
+    transition: background 0.2s, color 0.2s, transform 0.4s cubic-bezier(0.4,2,0.6,1);
+}
+.card img {
+    max-width: 52px;
+    max-height: 52px;
+    margin-top: 30px;
+    align-self: center;
+    transform: scaleX(-1);
+}
+#restart {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background: #2196f3;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#restart:hover {
+    background: #1769aa;
+}
+
+
+@media (max-width: 900px) {
+    #game-board {
+        grid-template-columns: repeat(4, 80px);
+        grid-gap: 6px;
+        margin: 10px auto;
+    }
+    .card, .card.flipped, .card.matched {
+        width: 80px;
+        height: 110px;
+    }
+    .card img {
+        max-width: 32px;
+        max-height: 32px;
+        margin-top: 18.5px;
+        align-self: center
+    }
+}
+
+@media (max-width: 600px) {
+    #game-board {
+        grid-template-columns: repeat(2, 80px);
+        grid-gap: 6px;
+        margin: 10px auto;
+    }
+    .card, .card.flipped, .card.matched {
+        width: 80px;
+        height: 110px;
+    }
+    .card img {
+        max-width: 30px;
+        max-height: 30px;
+        margin-top: 18.5px;
+        align-self: center;
+    }
+    h1 {
+        font-size: 1.1em;
+    }
+    #restart {
+        width: 100%;
+        font-size: 1em;
+        padding: 10px 0;
+    }
+    body {
+        padding: 0 2vw;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    #game-board {
+        grid-template-columns: repeat(8, 130px);
+    }
+}
+
+
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
