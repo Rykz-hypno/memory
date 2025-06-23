@@ -14,7 +14,7 @@ const correct= [
 ];
 
 /////////////////////////////
-// väsen
+// symboler
 /////////////////////////////
 
 const board = document.getElementById('game-board');
@@ -27,8 +27,28 @@ const symbols = [
     "img/pacman.png",
     "img/kopparälvan.png",
     "img/hamnrå.png",
-    "img/grotta.png"
+    "img/grotta.png",
+    "img/kyrka.png",
+    "img/frida.png",
+    "img/monster.png",
+    "img/bojort.png",
 ];
+
+const text = [
+    'Trollis',
+    'Vänervätte',
+    'Snigel',
+    'Skräckugglan',
+    'Pacman',
+    'Kopparälvan',
+    'Hamnrå',
+    'Grotta',
+    'Vänersborgs kyrka',
+    'Frida statyn',
+    'Vänernodjuret',
+    'Bojort',
+];
+
 let cards = [];
 let flipped = [];
 let lock = false;
@@ -56,14 +76,22 @@ function createBoard() {
     lock = false;
     matchedCount = 0;
     resetTimer();
-    cards = shuffle([...symbols, ...symbols]).map((symbol, idx) => {
+    // Skapa en array med både symbol och text
+    const symbolTextPairs = symbols.map((symbol, i) => ({ symbol, text: text[i] }));
+    // Dubbel uppsättning för memory
+    const allPairs = shuffle([...symbolTextPairs, ...symbolTextPairs]);
+    cards = allPairs.map((pair, idx) => {
         const card = document.createElement('div');
+        const cardcontainer = document.createElement('div');
+        cardcontainer.className = 'cardcontainer';
         card.className = 'card';
-        card.dataset.symbol = symbol;
+        card.dataset.symbol = pair.symbol;
+        card.dataset.text = pair.text;
         card.dataset.index = idx;
         card.textContent = '';
         card.addEventListener('click', flipCard);
-        board.appendChild(card);
+        cardcontainer.appendChild(card);
+        board.appendChild(cardcontainer);
         return card;
     });
 }
@@ -86,13 +114,16 @@ function flipCard(e) {
     flipSound.volume = 0.2;
     flipSound.play();
 
-    const background = document.createElement('background');
+    card.innerHTML = '';
     const img = document.createElement('img');
     img.src = card.dataset.symbol;
     img.alt = 'Symbol';
-    card.innerHTML = ''; 
-    card.appendChild(background);
     card.appendChild(img);
+    // Lägg till text under bilden
+    const textElem = document.createElement('div');
+    textElem.className = 'card-text';
+    textElem.textContent = card.dataset.text;
+    card.appendChild(textElem);
 
     flipped.push(card);
 
