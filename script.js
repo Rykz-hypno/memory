@@ -143,7 +143,7 @@ function checkMatch() {
     if (card1.dataset.symbol === card2.dataset.symbol) {
 
         const correctSound = new Audio(correct);
-        correctSound.volume = 0.05;
+        correctSound.volume = 0.06;
         correctSound.play();
 
         card1.classList.add('matched');
@@ -157,7 +157,7 @@ function checkMatch() {
         [card1, card2].forEach(card => {
 
             const flipBackSound = new Audio(cardFlip2);
-            flipBackSound.volume = 0.5;
+            flipBackSound.volume = 0.3;
             flipBackSound.play();
 
             card.classList.remove('flipped');
