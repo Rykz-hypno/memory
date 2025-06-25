@@ -10,7 +10,7 @@ const cardFlip2 = [
 ];
 
 const correct= [
-  'sound/correct.mp3',
+  'sound/correct.wav',
 ];
 
 /////////////////////////////
@@ -21,31 +21,31 @@ const board = document.getElementById('game-board');
 const restartBtn = document.getElementById('restart');
 const symbols = [
     "img/troll.png",
-    "img/vänervätte.png",
     "img/snigel.png",
-    "img/skräckugglan.png",
-    "img/pacman.png",
-    "img/kopparälvan.png",
-    "img/hamnrå.png",
     "img/grotta.png",
     "img/kyrka.png",
     "img/frida.png",
     "img/monster.png",
+    "img/tornet.png",
+    "img/pacman.png",
+    "img/vattentorn.png",
+    "img/berg.png",
+    "img/vänervätte.png",
     "img/bojort.png",
 ];
 
 const text = [
     'Trollis',
-    'Vänervätte',
     'Snigel',
-    'Skräckugglan',
-    'Pacman',
-    'Kopparälvan',
-    'Hamnrå',
-    'Grotta',
+    'Kalkgrotta',
     'Vänersborgs kyrka',
     'Frida statyn',
     'Vänernodjuret',
+    'Tornet',
+    'Pacman',
+    'Vattentornet',
+    'Halle- och Hunneberg',
+    'Vänervätte',
     'Bojort',
 ];
 
@@ -143,15 +143,16 @@ function checkMatch() {
     if (card1.dataset.symbol === card2.dataset.symbol) {
 
         const correctSound = new Audio(correct);
-        correctSound.volume = 0.06;
+        correctSound.volume = 0.1;
         correctSound.play();
 
         card1.classList.add('matched');
         card2.classList.add('matched');
         matchedCount += 2;
-        // Stoppa timer när alla kort är matchade
+
         if (matchedCount === symbols.length * 2) {
             stopTimer();
+            showWinningScreen();
         }
     } else {
         [card1, card2].forEach(card => {
@@ -196,3 +197,43 @@ function resetTimer() {
     stopTimer();
     timerDisplay.textContent = 'Tid: 0.0 s';
 }
+
+/////////////////////////////
+//  Winning Screen
+/////////////////////////////
+
+function showWinningScreen() {
+
+  const messageBox = document.getElementById('message');
+  if (messageBox) messageBox.style.display = "none";
+
+  const overlay = document.createElement('div');
+  overlay.classList.add('winning-overlay');
+
+  const timeText = timerDisplay ? timerDisplay.textContent : '';
+  overlay.innerHTML = `
+    <div class="winning-screen winning-background">
+      <div class="winning-content">
+        <h1>Du hittade alla kort, bra jobbat!</h1>
+        ${timeText ? `Du klarade spelet på ${timeText.replace('Tid: ', '')}` : ''}
+        <div class="winning-buttons">
+          <button id="restartBtn">Spela igen</button>
+          <button id="menuBtn">Återgå till meny</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  document.getElementById('restartBtn').addEventListener('click', () => {
+    replay = true;
+    overlay.remove();
+    createBoard();
+    resetTimer();
+  });
+
+  document.getElementById('menuBtn').addEventListener('click', () => {
+    window.location.href = "gamemeny.html";
+  });
+  }
+

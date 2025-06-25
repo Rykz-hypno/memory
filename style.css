@@ -4,7 +4,7 @@ html, body {
 
 body {
     font-family: Arial, sans-serif;
-    background-image: url(img/test3.png);
+    background-image: url(img/skräcklan.png);
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -30,13 +30,15 @@ body {
     justify-content: center;
 }
 
-h1 {
-    font-size: 4em;
-    color: #ffa600;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    margin-top: 20px;
-    font-family: "Hachi Maru Pop", sans-serif;
-    -webkit-text-stroke: 0.001em black; 
+#logga {
+    width: 100%;
+    height: 40%;
+    background-image: url(img/logga.png);
+    margin-bottom:5%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
 }
 
 #timer {
@@ -44,21 +46,22 @@ h1 {
     font-weight: bold;
     color: #222;
     background: rgba(255, 255, 255, 0.676);
-    border-radius: 8px;
+    border-radius: 10px;
     width: max-content;
     padding: 6px 18px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
 
 #restart {
-    margin-top: 20px;
+    margin-top: 5%;
     padding: 10px 20px;
     font-size: 1em;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     background: #0033ff;
     color: #fff;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     transition: background 0.2s;
 }
 #restart:hover {
@@ -93,7 +96,7 @@ h1 {
     justify-content: center;
 }
 .card, .card.flipped, .card.matched {
-    width: 165px;
+    width: 190px;
     height: 100%;
     background-image: url(img/framsida.png);
     background-size: cover;
@@ -113,8 +116,8 @@ h1 {
     transition: background 0.2s, color 0.2s, transform 0.4s cubic-bezier(0.4,2,0.6,1);
 }
 .card img {
-    max-width: 70%;
-    max-height: 70%;
+    max-width: 65%;
+    max-height: 65%;
     display: block;
     margin: auto;
     transform: scaleX(-1);
@@ -125,8 +128,87 @@ h1 {
     color: #000000;
     margin-top: 0;
     position: absolute;
-    top: 4.5%;
+    top: 6%;
     transform: scaleX(-1);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* Vinnande skärm */
+
+.winning-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7); /* mörkläggning */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.winning-background {
+  background-image: url('../img/endscreen.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 80vw;
+  height: 70vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.winning-content {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  color: #fff8dc;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  max-width: 80%;
+  backdrop-filter: blur(3px);
+}
+
+.winning-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  text-shadow: 3px 3px 6px #000;
+  color: #fffbe0;
+  text-shadow:
+    2px 2px 0 #663300,
+    4px 4px 8px rgba(0,0,0,0.4);
+  animation: popIn 0.6s ease-out;
+}
+
+.winning-content p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #fff2c2;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 2px #000;
+  animation: fadeInUp 1s ease-out;
+}
+
+.winning-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.winning-buttons button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  background-color: #6c4e2f;
+  color: #f5eedd;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.winning-buttons button:hover {
+  background-color: #8a6443;
+  transform: scale(1.05);
+}
