@@ -27,10 +27,10 @@ const symbols = [
     "img/frida.png",
     "img/monster.png",
     "img/tornet.png",
-    "img/pacman.png",
+    "img/cykel.png",
     "img/vattentorn.png",
     "img/berg.png",
-    "img/vänervätte.png",
+    "img/älg.png",
     "img/bojort.png",
 ];
 
@@ -42,10 +42,10 @@ const text = [
     'Frida statyn',
     'Vänernodjuret',
     'Tornet',
-    'Pacman',
+    'Höghjuling',
     'Vattentornet',
     'Halle- och Hunneberg',
-    'Vänervätte',
+    'älg',
     'Bojort',
 ];
 
