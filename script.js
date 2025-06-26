@@ -30,7 +30,7 @@ const symbols = [
     "img/cykel.png",
     "img/vattentorn.png",
     "img/berg.png",
-    "img/älg.png",
+    "img/moose.png",
     "img/bojort.png",
 ];
 
